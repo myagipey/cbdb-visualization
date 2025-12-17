@@ -7,6 +7,23 @@ import sqlite3
 import os
 import re
 
+# === 🔍 调试代码开始 (调试完后可以删除) ===
+st.write("### 🔍 云端环境文件自检")
+st.write(f"当前工作目录: `{os.getcwd()}`")
+st.write("目录下的所有文件:")
+st.write(os.listdir('.')) # 这会打印出服务器上所有的文件
+
+if os.path.exists('cbdb_lite.db'):
+    st.success("✅ 成功检测到 cbdb_lite.db")
+else:
+    st.error("❌ 未找到 cbdb_lite.db！请检查 GitHub 仓库是否上传，或文件名大小写是否一致。")
+
+if os.path.exists('cbdb_codebook.xlsx'):
+    st.success("✅ 成功检测到 cbdb_codebook.xlsx")
+else:
+    st.error("❌ 未找到 cbdb_codebook.xlsx！")
+# === 🔍 调试代码结束 ===
+
 # ================= 1. 页面配置 =================
 st.set_page_config(
     page_title="CBDB 数据库架构全景",
@@ -583,4 +600,5 @@ LIMIT 10"""
 if mode == "架构拓扑图 (Schema)":
     render_schema_topology(selected_keys, spring_len)
 elif mode == "数据化原理 (Datafication)":
+
     render_datafication_case_study()
